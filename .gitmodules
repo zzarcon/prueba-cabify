@@ -1,0 +1,6 @@
+[submodule "web"]
+	path = web
+	url = git@github.com:vilvadot/experiment-scaffolding-frontend.git
+[submodule "api"]
+	path = api
+	url = git@github.com:vilvadot/experiment-scaffolding-backend.git

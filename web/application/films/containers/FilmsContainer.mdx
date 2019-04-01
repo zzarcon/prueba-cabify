@@ -1,0 +1,31 @@
+---
+name: Films container
+---
+
+import FilmsContainer from './Films'
+import { Playground, PropsTable } from 'docz'
+
+# Films
+<PropsTable of={FilmsContainer} />
+
+### Empty
+
+<Playground>
+  <FilmsContainer loadFilms={()=>{}}/>
+</Playground>
+
+### Loading
+<Playground>
+  <FilmsContainer loading loadFilms={()=>{}}/>
+</Playground>
+
+### With content
+<Playground>
+  <FilmsContainer 
+    loadFilms={()=>{}}
+    films={[
+      {title: 'film'},
+      {title: 'film2'}
+    ]}
+  />
+</Playground>

@@ -1,0 +1,21 @@
+---
+name: Films component
+---
+
+import Films from './'
+import { Playground, PropsTable } from 'docz'
+
+# Films
+
+<PropsTable of={Films} />
+
+### Empty
+<Films />
+
+### With content
+<Playground>
+  <Films films={[
+    {title: 'film'},
+    {title: 'film2'}
+  ]}/>
+</Playground>
