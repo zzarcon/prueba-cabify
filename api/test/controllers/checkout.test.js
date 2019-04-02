@@ -1,16 +1,18 @@
-import sinon from 'sinon'
-import mongoose from 'mongoose'
-import 'sinon-mongoose'
+import sinon from "sinon"
+require("sinon-mongoose")
+import Basket from "../../src/models/Basket"
 
-//Importing our todo model for our unit testing.
-import  {Basket} from '../../src/models/Basket'
+describe("Get all baskets", () => {
 
-const sum = (a,b) => a + b
-
-describe('Sum', () => {
-  it('should add two numbers', () => {
-    const RESULT = sum(3, 2)
-  
-    expect(RESULT).toBe(5)
+  it("should return all baskets", () => {
+    var BasketMock = sinon.mock(Basket)
+    var expectedResult = { baskets: ['a', 'b'] }
+    BasketMock.expects("find").yields(null, expectedResult)
+    Basket.find((err, result) => {
+      BasketMock.verify()
+      BasketMock.restore()
+      expect(result.baskets.length).toBe(2)
+    })
   })
-}) 
+
+})

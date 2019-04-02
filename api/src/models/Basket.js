@@ -1,18 +1,12 @@
-import {Schema} from 'mongoose'
+import {Schema, model} from  'mongoose'
 
-const BasketSchema = new Schema({
-  amount: {
-    type: Number,
-    required: true
-  },
-  date_created: {
-    type: Date,
-    default: Date.now
-  },
+const BasketSchema = Schema({
   products: {
     type: Array,
     default: []
-  }
+  },
 })
 
-export default BasketSchema
+var BasketModel = model('Basket', BasketSchema)
+
+export default BasketModel
