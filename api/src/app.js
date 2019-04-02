@@ -4,7 +4,7 @@ const routes = require('./routes')
 const mongoose = require('mongoose')
 
 const app = express();
-const {PORT, DATABASE_URI} = process.env
+const {DATABASE_URI} = process.env
 
 // TODO: Config CORS correctly
 app.use((req, res, next) => {
@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 });
 
 // Connect DB
-mongoose.connect(DATABASE_URI);
+mongoose.connect(DATABASE_URI, { useNewUrlParser: true });
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
@@ -25,4 +25,5 @@ app.use(bodyParser.json())
 
 app.use(routes)
 
-app.listen(PORT, () => console.log(`Listening on: localhost:${PORT}!!`));
+export default app
+
