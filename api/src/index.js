@@ -18,6 +18,7 @@ mongoose.connect(DATABASE_URI);
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
+mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
