@@ -4,10 +4,13 @@ services:
     build: ./api
     environment:
       - PORT=4000
+      - DATABASE_URI=mongodb://database:27017/prueba_cabify
     ports: 
       - "4000:4000"
     volumes:
       - ./api/src:/api/src
+    depends_on:
+      - database
     command: ["npm", "run", "dev"]
   web:
     build: ./web
@@ -31,3 +34,7 @@ services:
     depends_on:
       - api
       - web
+  database:
+    image: "mongo:latest"
+    ports: 
+      - "27018:27017"
