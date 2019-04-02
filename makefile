@@ -14,7 +14,7 @@ test-web:
 	docker-compose exec web npm run test
 
 test-api:
-	docker-compose exec api npm run test
+	docker-compose run api npm run test
 
 update-project:
 	git submodule update --recursive --remote
