@@ -3,8 +3,12 @@ import app from "../../src/app";
 import database from "../../src/database";
 
 describe("Test the root path", () => {
+  beforeAll(() => {
+    database.connect();
+  });
+
   afterAll(() => {
-    database.disconnect()
+    database.disconnect();
   });
 
   test("It should response the GET method", done => {
@@ -12,7 +16,6 @@ describe("Test the root path", () => {
     return request(app)
       .get("/api/checkout/123")
       .then(response => {
-        console.log(response.body);
         expect(response.statusCode).toBe(200);
         done();
       });
