@@ -3,7 +3,7 @@ exports.createBasket = (req, res) => {
     message: `create basket`
   })
 }
-
+// TODO: FIX THIS
 exports.getBasketAmount = (req, res) => {
   const {basketId} = req.params
 

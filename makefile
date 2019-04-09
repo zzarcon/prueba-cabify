@@ -14,7 +14,7 @@ test-web:
 	docker-compose exec web npm run test
 
 test-api:
-	docker-compose run api npm run test
+	docker-compose run -e DATABASE_URI=mongodb://database:27017/cabify-test-db api npm run test
 
 update-project:
 	git submodule update --recursive --remote
