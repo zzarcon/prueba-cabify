@@ -1,17 +1,17 @@
 import {Schema, model} from  'mongoose'
-import { uuidv3 } from 'uuid'
+import uuid from 'uuid/v1'
 
 const BasketSchema = Schema({
 	_id: {
 		type: String,
-		default: () => uuidv3('basket.')
+		default: () => uuid()
 	},
-  products: {
-    type: Array,
-    default: []
-  },
+	products: {
+		type: Array,
+		default: []
+	},
 })
 
-var BasketModel = model('Basket', BasketSchema)
+var Basket = model('Basket', BasketSchema)
 
-export default BasketModel
+export default Basket

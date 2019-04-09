@@ -1,5 +1,6 @@
 import app from './app'
 import database from './database'
+import BasketCollection from './collections/Basket'
 
 const {PORT} = process.env
 

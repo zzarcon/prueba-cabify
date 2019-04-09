@@ -1,9 +1,16 @@
+import createBasket from '../actions/createBasket'
+
 exports.createBasket = (req, res) => {
-  res.json({
-    message: `create basket`
-  })
+		createBasket()
+		.then(basket => {
+			res.json(basket)
+		})
+		.catch(error => {
+			res.status(500)
+			res.send('Error creating basket!')
+		})
 }
-// TODO: FIX THIS
+
 exports.getBasketAmount = (req, res) => {
   const {basketId} = req.params
 

@@ -6,7 +6,7 @@
     "dev": "nodemon --watch src --exec babel-node -- src/server",
     "build": "babel src -d dist",
     "test": "jest test",
-    "test:watch": "jest test -- --watch"
+    "test:watch": "jest test --watch"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -19,7 +19,6 @@
     "@babel/core": "^7.4.0",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.2",
-    "babel-jest": "^23.6.0",
     "jest": "^24.1.0",
     "nodemon": "^1.18.10",
     "supertest": "^4.0.2"
