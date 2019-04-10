@@ -1,9 +1,9 @@
-import createBasket from "../actions/createBasket";
+import CreateBasket from "../actions/CreateBasket";
 import RetrieveBaskets from "../actions/RetrieveBaskets";
 
 // TODO: Problem with repeated naming between controllers and actions
 exports.createNewBasket = (req, res) => {
-  createBasket()
+  CreateBasket.run()
     .then(basket => {
       res.json(basket);
     })
@@ -14,8 +14,7 @@ exports.createNewBasket = (req, res) => {
 };
 
 exports.getAllBaskets = (req, res) => {
-  RetrieveBaskets
-    .run()
+  RetrieveBaskets.run()
     .then(baskets => {
       res.json({
         baskets
