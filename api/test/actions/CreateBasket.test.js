@@ -1,6 +1,6 @@
 import "@babel/polyfill";
 import database from "../../src/database";
-import CreateBasket from "../../src/actions/CreateBasket";
+import { CreateBasket } from "../../src/actions";
 
 // TODO: Mas tests para actions?
 describe("CreateBasket", () => {
@@ -16,7 +16,7 @@ describe("CreateBasket", () => {
   });
 
   test("It should create a basket", async () => {
-		const basket = await CreateBasket.run();
+    const basket = await CreateBasket.run();
 
     expect(basket.id).toBeDefined();
     expect(basket.products.length).toEqual(0);

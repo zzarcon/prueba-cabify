@@ -1,7 +1,6 @@
 import "@babel/polyfill";
 import database from "../../src/database";
-import RetrieveBaskets from "../../src/actions/RetrieveBaskets";
-import CreateBasket from "../../src/actions/CreateBasket";
+import {RetrieveBaskets, CreateBasket} from "../../src/actions";
 
 //TODO: Mejorar estructura de tests, AAA?
 describe("RetrieveBaskets", () => {

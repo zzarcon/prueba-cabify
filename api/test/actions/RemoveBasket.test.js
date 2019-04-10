@@ -1,8 +1,6 @@
 import "@babel/polyfill";
 import database from '../../src/database'
-import CreateBasket from "../../src/actions/CreateBasket";
-import RemoveBasket from "../../src/actions/RemoveBasket";
-import RetrieveBaskets from "../../src/actions/RetrieveBaskets";
+import {CreateBasket, RemoveBasket, RetrieveBaskets } from "../../src/actions";
 
 describe("RemoveBasket", () => {
 	beforeAll(() => {
