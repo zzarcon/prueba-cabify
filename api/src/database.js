@@ -12,10 +12,15 @@ const connect = () => {
 };
 
 const disconnect = () => {
-  mongoose.connection.close();
+  return mongoose.connection.close();
 };
+
+const drop = () => {
+	return mongoose.connection.db.dropDatabase()
+}
 
 export default {
   connect,
-  disconnect
+	disconnect,
+	drop
 };

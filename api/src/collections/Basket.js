@@ -8,7 +8,11 @@ class BasketCollection {
   static saveBasket() {
     const basket = new Basket();
     return basket.save();
-  }
+	}
+
+	static retrieveBaskets(){
+		return Basket.find({})
+	}
 }
 
 export default BasketCollection;

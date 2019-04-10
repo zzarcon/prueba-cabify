@@ -1,14 +1,15 @@
 import BasketCollection from '../collections/Basket'
+import Basket from '../domain/Basket'
 
 const createBasket = () => {
 	return new Promise((resolve, reject) => {
 		BasketCollection.saveBasket()
-		.then(basket => {
-			const {id, products} = basket
-			resolve({
-				id,
-				products
-			})
+		.then(response => {
+			const {id, products} = response
+
+			const basket = new Basket(id, products).serialize()
+
+			resolve(basket)
 		})
 		.catch(error => {
 			console.error(error)

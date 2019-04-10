@@ -1,9 +1,11 @@
-const express = require('express')
+import express from 'express'
+import checkout from '../controllers/checkout'
+
 const router = express.Router();
-const checkout = require('../controllers/checkout')
 
 //TODO: Relationship Service <> Controller?
-router.post('/', checkout.createBasket)
+//TODO: Cómo afrontar el plantemiento, primero lógico o rutas?
+router.post('/', checkout.createNewBasket)
 router.get('/:basketId', checkout.getBasketAmount)
 router.delete('/:basketId', checkout.deleteBasket)
 router.post('/:basketId', checkout.addProductsToBasket)

@@ -1,6 +1,7 @@
 import createBasket from '../actions/createBasket'
 
-exports.createBasket = (req, res) => {
+// TODO: Problem with repeated naming between controllers and actions
+exports.createNewBasket = (req, res) => {
 		createBasket()
 		.then(basket => {
 			res.json(basket)
