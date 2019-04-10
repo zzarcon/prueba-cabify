@@ -1,9 +1,9 @@
 import "@babel/polyfill";
 import database from "../../src/database";
-import retrieveBaskets from "../../src/actions/retrieveBaskets";
+import RetrieveBaskets from "../../src/actions/RetrieveBaskets";
 import Checkout from "../pageObjects/Checkout";
 
-describe("retrieveBaskets", () => {
+describe("RetrieveBaskets", () => {
   beforeAll(() => {
     database.connect();
   });
@@ -15,20 +15,22 @@ describe("retrieveBaskets", () => {
   });
 
   test("It should retrieve baskets", () => {
-    return retrieveBaskets().then(baskets => {
-		expect(baskets).toBeDefined()
-		expect(baskets.length).toBeDefined()
-	});
+    RetrieveBaskets
+      .run()
+      .then(baskets => {
+        expect(baskets).toBeDefined();
+        expect(baskets.length).toBeDefined();
+      });
   });
 
   test("It should retrieve a previously created baskets", async () => {
     const basket = await Checkout.createBasket();
 
-    return retrieveBaskets().then(baskets => {
-      const createdBasket = baskets.find(
-        element => element.id === basket.id
-      );
-      expect(createdBasket).toBeDefined();
-    });
+    return RetrieveBaskets
+      .run()
+      .then(baskets => {
+        const createdBasket = baskets.find(element => element.id === basket.id);
+        expect(createdBasket).toBeDefined();
+			})
   });
 });
