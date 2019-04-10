@@ -22,6 +22,7 @@ describe("RemoveBasket", () => {
 		const baskets = await RetrieveBaskets.run()
 
 		const foundBasket = baskets.find(element => element.id === basketID)
+
 		expect(foundBasket).toBeUndefined()
   });
 });

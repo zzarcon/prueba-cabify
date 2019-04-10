@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/', checkout.createNewBasket)
 router.get('/', checkout.getAllBaskets)
 router.get('/:basketId', checkout.getBasketAmount)
-router.delete('/:basketId', checkout.deleteBasket)
+router.delete('/:basketId', checkout.removeBasket)
 router.post('/:basketId', checkout.addProductsToBasket)
 
 module.exports = router;

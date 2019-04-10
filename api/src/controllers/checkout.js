@@ -1,5 +1,4 @@
-import CreateBasket from "../actions/CreateBasket";
-import RetrieveBaskets from "../actions/RetrieveBaskets";
+import { CreateBasket, RetrieveBaskets, RemoveBasket } from "../actions";
 
 // TODO: Problem with repeated naming between controllers and actions
 exports.createNewBasket = (req, res) => {
@@ -35,13 +34,18 @@ exports.getBasketAmount = (req, res) => {
   });
 };
 
-exports.deleteBasket = (req, res) => {
-  const { basketId } = req.params;
-
-  res.json({
-    message: "delete basket!",
-    basketId
-  });
+exports.removeBasket = (req, res) => {
+	const { basketId } = req.params;
+  RemoveBasket.run(basketId)
+    .then(() => {
+      res.json({
+        message: "Basket deleted correctly!"
+      });
+    })
+    .catch(error => {
+      res.status(500);
+      res.send("Error removing basket!");
+    });
 };
 
 exports.addProductsToBasket = (req, res) => {

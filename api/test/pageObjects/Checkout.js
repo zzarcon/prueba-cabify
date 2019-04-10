@@ -1,28 +1,32 @@
 import request from "supertest";
-import app from '../../src/app'
+import app from "../../src/app";
 
-const checkoutRoute = '/api/checkout/'
+const checkoutRoute = "/api/checkout/";
 
 class Checkout {
-	static async createBasket(){
-		let basket
-		await request(app)
-		.post(checkoutRoute)
-		.then(response => {
-			basket = response.body
-		})
-		return basket
+  static async createBasket() {
+		const response = await request(app).post(checkoutRoute)
+		const basket = response.body
+
+    return basket;
+  }
+
+  static async retrieveBaskets() {
+		const response = await request(app).get(checkoutRoute)
+		const {baskets} = response.body
+
+    return baskets;
+  }
+
+  static async isBasketInList(basketId) {
+    const baskets = await this.retrieveBaskets();
+
+		return !!baskets.find(basket => basket.id === basketId);
 	}
 
-	static async retrieveBaskets(){
-		let baskets
-		await request(app)
-		.get(checkoutRoute)
-		.then(response => {
-			baskets = response.body.baskets
-		})
-		return baskets
+	static async removeBasket(basketId){
+		return await request(app).delete(`${checkoutRoute}/${basketId}`)
 	}
 }
 
-export default Checkout
+export default Checkout;

@@ -14,7 +14,7 @@ describe("/checkout/", () => {
     });
   });
 
-  test("Basket be created with a unique id", async () => {
+  test("baskets are created with a unique id", async () => {
     const firstBasket = await Checkout.createBasket();
     const secondBasket = await Checkout.createBasket();
 
@@ -22,12 +22,22 @@ describe("/checkout/", () => {
     expect(firstBasket.id).not.toBe(secondBasket.id);
   });
 
-  test("Baskets can be retrieved", async () => {
+  test("created baskets can be retrieved", async () => {
     const newBasket = await Checkout.createBasket();
-		const baskets = await Checkout.retrieveBaskets();
+		// TODO: Esto repetido donde lo pongo?
+		const isBasketInList = await Checkout.isBasketInList(newBasket.id)
 
-		const foundBasket = baskets.find((element) => element.id === newBasket.id)
+    expect(isBasketInList).toBe(true)
+	});
 
-    expect(foundBasket).toBeDefined()
-  });
+	test('remove a basket by id', async () => {
+		const newBasket = await Checkout.createBasket();
+		const newBasketID = newBasket.id
+
+		await Checkout.removeBasket(newBasketID)
+
+		const isBasketInList = await Checkout.isBasketInList(newBasketID)
+
+		expect(isBasketInList).toBe(false)
+	})
 });
