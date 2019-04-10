@@ -15,17 +15,17 @@ describe("Checkout", () => {
   });
 
   test("It should retrieve baskets", () => {
-    return retrieveBaskets().then(response => {
-		expect(response.baskets).toBeDefined()
-		expect(response.baskets.length).toBeDefined()
+    return retrieveBaskets().then(baskets => {
+		expect(baskets).toBeDefined()
+		expect(baskets.length).toBeDefined()
 	});
   });
 
   test("It should retrieve a previously created baskets", async () => {
     const basket = await Checkout.createBasket();
 
-    return retrieveBaskets().then(response => {
-      const createdBasket = response.baskets.find(
+    return retrieveBaskets().then(baskets => {
+      const createdBasket = baskets.find(
         element => element.id === basket.id
       );
       expect(createdBasket).toBeDefined();

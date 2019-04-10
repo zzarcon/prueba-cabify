@@ -1,23 +1,25 @@
 import request from "supertest";
 import app from '../../src/app'
 
+const checkoutRoute = '/api/checkout/'
+
 class Checkout {
 	static async createBasket(){
 		let basket
 		await request(app)
-		.post('/api/checkout/')
+		.post(checkoutRoute)
 		.then(response => {
 			basket = response.body
 		})
 		return basket
 	}
 
-	static async getBaskets(){
+	static async retrieveBaskets(){
 		let baskets
 		await request(app)
-		.get('/api/checkout/')
+		.get(checkoutRoute)
 		.then(response => {
-			baskets = response.body
+			baskets = response.body.baskets
 		})
 		return baskets
 	}

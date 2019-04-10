@@ -10,9 +10,7 @@ const retrieveBaskets = () => {
           const { id, products } = basket;
           return new Basket(id, products).serialize();
         });
-        resolve({
-          baskets
-        });
+        resolve(baskets);
       })
       .catch(error => {
         reject(error);
