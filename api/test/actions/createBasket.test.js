@@ -2,7 +2,7 @@ import "@babel/polyfill";
 import database from '../../src/database'
 import createBasket from "../../src/actions/createBasket";
 
-describe("Checkout", () => {
+describe("createBasket", () => {
 	beforeAll(() => {
 		database.connect()
   });

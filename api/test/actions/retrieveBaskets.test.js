@@ -1,9 +1,9 @@
 import "@babel/polyfill";
 import database from "../../src/database";
 import retrieveBaskets from "../../src/actions/retrieveBaskets";
-import Checkout from "../domain/Checkout";
+import Checkout from "../pageObjects/Checkout";
 
-describe("Checkout", () => {
+describe("retrieveBaskets", () => {
   beforeAll(() => {
     database.connect();
   });

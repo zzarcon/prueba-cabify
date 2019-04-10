@@ -1,9 +1,9 @@
 import "@babel/polyfill";
 import database from "../../src/database";
-import Checkout from "../domain/Checkout";
+import Checkout from "../pageObjects/Checkout";
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
-describe("Checkout", () => {
+describe("/checkout/", () => {
   beforeAll(() => {
     database.connect();
   });
