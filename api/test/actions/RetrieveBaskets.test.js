@@ -1,8 +1,9 @@
 import "@babel/polyfill";
 import database from "../../src/database";
 import RetrieveBaskets from "../../src/actions/RetrieveBaskets";
-import Checkout from "../pageObjects/Checkout";
+import CreateBasket from "../../src/actions/CreateBasket";
 
+//TODO: Mejorar estructura de tests, AAA?
 describe("RetrieveBaskets", () => {
   beforeAll(() => {
     database.connect();
@@ -14,23 +15,19 @@ describe("RetrieveBaskets", () => {
     });
   });
 
-  test("It should retrieve baskets", () => {
-    RetrieveBaskets
-      .run()
-      .then(baskets => {
-        expect(baskets).toBeDefined();
-        expect(baskets.length).toBeDefined();
-      });
+  test("It should retrieve baskets", async () => {
+		const baskets = await RetrieveBaskets.run();
+
+		expect(baskets).toBeDefined();
+    expect(baskets.length).toBeDefined();
   });
 
   test("It should retrieve a previously created baskets", async () => {
-    const basket = await Checkout.createBasket();
+    const basket = await CreateBasket.run(); // TODO: Use action or endpoints?
+		const baskets = await RetrieveBaskets.run();
 
-    return RetrieveBaskets
-      .run()
-      .then(baskets => {
-        const createdBasket = baskets.find(element => element.id === basket.id);
-        expect(createdBasket).toBeDefined();
-			})
+		const createdBasket = baskets.find(element => element.id === basket.id);
+
+    expect(createdBasket).toBeDefined();
   });
 });
