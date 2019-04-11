@@ -8,7 +8,11 @@ class BasketCollection {
   static save() {
     const basket = new Basket();
     return basket.save();
-  }
+	}
+
+	static retrieveOne(basketId){
+		return Basket.findOne({ _id: basketId })
+	}
 
   static retrieveAll() {
     return Basket.find({});
@@ -18,9 +22,6 @@ class BasketCollection {
     return Basket.deleteOne({ _id: basketId })
 	}
 
-	static retrieveOne(basketId){
-		return Basket.findOne({ _id: basketId })
-	}
 }
 
 export default BasketCollection;

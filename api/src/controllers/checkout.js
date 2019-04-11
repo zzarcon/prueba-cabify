@@ -7,17 +7,14 @@ exports.createNewBasket = async (req, res) => {
 	res.json(basket)
 };
 
-exports.getAllBaskets = (req, res) => {
-  RetrieveBaskets.run()
-    .then(baskets => {
-      res.json({
-        baskets
-      });
-    })
-    .catch(error => {
-      res.status(500);
-      res.send("Error retrieving baskets!");
-    });
+exports.getAllBaskets = async (req, res) => {
+  const baskets = await RetrieveBaskets.run()
+
+	res.json(
+		{
+			baskets,
+		}
+	)
 };
 
 exports.getBasketAmount = async (req, res) => {
