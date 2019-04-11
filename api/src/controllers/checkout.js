@@ -1,6 +1,6 @@
 import { CreateBasket, RetrieveBaskets, RemoveBasket, RetrieveBasket } from "../actions";
 
-// TODO: Problem with repeated naming between controllers and actions
+// TODO: Problem with repeated naming between controllers,actions,collections etc..
 exports.createNewBasket = async (req, res) => {
 	const basket = await CreateBasket.run()
 

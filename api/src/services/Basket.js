@@ -10,7 +10,7 @@ class BasketService {
 	}
 
 	static async remove(basketId) {
-    return await Collection.removeBasket(basketId);
+    return await Collection.remove(basketId);
   }
 
   static async retrieve(basketId) {

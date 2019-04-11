@@ -18,7 +18,7 @@ class BasketCollection {
     return Basket.find({});
   }
 
-  static removeBasket(basketId) {
+  static remove(basketId) {
     return Basket.deleteOne({ _id: basketId })
 	}
 
