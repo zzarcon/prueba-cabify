@@ -1,7 +1,7 @@
 import { CreateBasket, RetrieveBaskets, RemoveBasket, RetrieveBasket } from "../actions";
 
 // TODO: Problem with repeated naming between controllers,actions,collections etc..
-exports.createNewBasket = async (req, res) => {
+exports.createBasket = async (req, res) => {
 	const basket = await CreateBasket.run()
 
 	res.json(basket)
@@ -17,7 +17,7 @@ exports.getAllBaskets = async (req, res) => {
 	)
 };
 
-exports.getBasketAmount = async (req, res) => {
+exports.getBasket = async (req, res) => {
   const { basketId } = req.params;
 
 	const basket = await RetrieveBasket.do(basketId)
@@ -25,7 +25,7 @@ exports.getBasketAmount = async (req, res) => {
 	res.json(basket)
 };
 
-exports.removeBasket = async (req, res) => {
+exports.deleteBasket = async (req, res) => {
 	const { basketId } = req.params;
 	await RemoveBasket.run(basketId)
 
