@@ -1,16 +1,8 @@
-import BasketCollection from "../collections/Basket";
+import Basket from '../services/Basket'
 
 class RemoveBasket {
-  static run(basketId) {
-    return new Promise((resolve, reject) => {
-      BasketCollection.removeBasket(basketId)
-        .then(response => {
-          resolve();
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
+  static async run(basketId) {
+		return await Basket.remove(basketId)
   }
 }
 

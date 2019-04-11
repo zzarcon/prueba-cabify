@@ -1,21 +1,10 @@
-import BasketCollection from "../collections/Basket";
-import Basket from "../domain/Basket";
+import Basket from "../services/Basket";
 
 class CreateBasket {
-  static run() {
-    return new Promise((resolve, reject) => {
-      BasketCollection.saveBasket()
-        .then(response => {
-          const { id, products } = response;
+  static async run() {
+		const basket = await Basket.create()
 
-          const basket = new Basket(id, products).serialize();
-
-          resolve(basket);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    });
+		return basket
   }
 }
 

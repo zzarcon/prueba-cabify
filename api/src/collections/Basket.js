@@ -2,15 +2,15 @@ import Basket from "../models/Basket";
 
 class BasketCollection {
   static drop() {
-    Basket.collection.drop();
+    return Basket.collection.drop();
   }
 
-  static saveBasket() {
+  static save() {
     const basket = new Basket();
     return basket.save();
   }
 
-  static retrieveBaskets() {
+  static retrieveAll() {
     return Basket.find({});
   }
 

@@ -1,15 +1,10 @@
 import { CreateBasket, RetrieveBaskets, RemoveBasket, RetrieveBasket } from "../actions";
 
 // TODO: Problem with repeated naming between controllers and actions
-exports.createNewBasket = (req, res) => {
-  CreateBasket.run()
-    .then(basket => {
-      res.json(basket);
-    })
-    .catch(error => {
-      res.status(500);
-      res.send("Error creating basket!");
-    });
+exports.createNewBasket = async (req, res) => {
+	const basket = await CreateBasket.run()
+
+	res.json(basket)
 };
 
 exports.getAllBaskets = (req, res) => {
@@ -33,18 +28,11 @@ exports.getBasketAmount = async (req, res) => {
 	res.json(basket)
 };
 
-exports.removeBasket = (req, res) => {
+exports.removeBasket = async (req, res) => {
 	const { basketId } = req.params;
-  RemoveBasket.run(basketId)
-    .then(() => {
-      res.json({
-        message: "Basket deleted correctly!"
-      });
-    })
-    .catch(error => {
-      res.status(500);
-      res.send("Error removing basket!");
-    });
+	await RemoveBasket.run(basketId)
+
+	res.sendStatus(204)
 };
 
 exports.addProductsToBasket = (req, res) => {
