@@ -14,7 +14,7 @@ describe("RetrieveBasket", () => {
   });
 
   test("It should get a basket", async () => {
-		const createdBasket = await CreateBasket.run()
+		const createdBasket = await CreateBasket.do()
 
 		const basket = await RetrieveBasket.do(createdBasket.id)
 

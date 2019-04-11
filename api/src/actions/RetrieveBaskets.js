@@ -1,8 +1,10 @@
 import Basket from '../services/Basket'
 
 class RetrieveBaskets {
-  static async run() {
-		return await Basket.retrieveAll()
+  static async do() {
+		const baskets = await Basket.retrieveAll()
+
+		return baskets
   }
 }
 

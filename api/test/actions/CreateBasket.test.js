@@ -16,7 +16,7 @@ describe("CreateBasket", () => {
   });
 
   test("It should create a basket", async () => {
-    const basket = await CreateBasket.run();
+    const basket = await CreateBasket.do();
 
     expect(basket.id).toBeDefined();
     expect(basket.products.length).toEqual(0);

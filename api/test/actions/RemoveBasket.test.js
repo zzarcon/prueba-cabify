@@ -15,11 +15,11 @@ describe("RemoveBasket", () => {
   });
 
   test("It should delete a basket", async () => {
-		const basket = await CreateBasket.run()
+		const basket = await CreateBasket.do()
 		const basketID = basket.id
-		await RemoveBasket.run(basketID)
+		await RemoveBasket.do(basketID)
 
-		const baskets = await RetrieveBaskets.run()
+		const baskets = await RetrieveBaskets.do()
 
 		const foundBasket = baskets.find(element => element.id === basketID)
 

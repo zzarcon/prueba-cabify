@@ -1,8 +1,10 @@
 import Basket from '../services/Basket'
 
 class RemoveBasket {
-  static async run(basketId) {
-		return await Basket.remove(basketId)
+  static async do(basketId) {
+		const response = await Basket.remove(basketId)
+
+		return response
   }
 }
 

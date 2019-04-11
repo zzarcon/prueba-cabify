@@ -15,15 +15,15 @@ describe("RetrieveBaskets", () => {
   });
 
   test("It should retrieve baskets", async () => {
-		const baskets = await RetrieveBaskets.run();
+		const baskets = await RetrieveBaskets.do();
 
 		expect(baskets).toBeDefined();
     expect(baskets.length).toBeDefined();
   });
 
   test("It should retrieve a previously created baskets", async () => {
-    const basket = await CreateBasket.run(); // TODO: Use action or endpoints?
-		const baskets = await RetrieveBaskets.run();
+    const basket = await CreateBasket.do(); // TODO: Use action or endpoints?
+		const baskets = await RetrieveBaskets.do();
 
 		const createdBasket = baskets.find(element => element.id === basket.id);
 
