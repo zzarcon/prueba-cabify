@@ -15,8 +15,12 @@ class BasketCollection {
   }
 
   static removeBasket(basketId) {
-    return Basket.deleteOne({ _id: basketId });
-  }
+    return Basket.deleteOne({ _id: basketId })
+	}
+
+	static retrieveOne(basketId){
+		return Basket.findOne({ _id: basketId })
+	}
 }
 
 export default BasketCollection;

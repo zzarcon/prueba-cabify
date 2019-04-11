@@ -27,6 +27,13 @@ class Checkout {
 	static async removeBasket(basketId){
 		return await request(app).delete(`${checkoutRoute}/${basketId}`)
 	}
+
+	static async getBasket(basketId){
+		const response = await request(app).get(`${checkoutRoute}/${basketId}`)
+		const basket = response.body
+
+		return basket
+	}
 }
 
 export default Checkout;

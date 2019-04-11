@@ -40,4 +40,12 @@ describe("/checkout/", () => {
 
 		expect(isBasketInList).toBe(false)
 	})
+
+	test('get a specific basket by id', async () => {
+		const newBasket = await Checkout.createBasket();
+
+		const basket = await Checkout.getBasket(newBasket.id)
+
+		expect(basket.id).toEqual(newBasket.id)
+	})
 });
