@@ -58,4 +58,33 @@ describe("Basket", () => {
     expect(firstProductInBasket).toEqual(aProduct);
     expect(lastProductInBasket).toEqual(anotherProduct);
 	});
+
+	test('handles simple products price', () => {
+		const aProduct = new Product("LSBR", "lightsaber", 100);
+		const basket = new Basket("1337");
+		const combinedProductAmount = 300
+
+		basket.addProduct(aProduct)
+		basket.addProduct(aProduct)
+		basket.addProduct(aProduct)
+
+		expect(basket.amount).toBe(combinedProductAmount)
+	})
+
+	test('handles 2x1 promotions', () => {
+		const promotion = '2X1'
+
+		const aProduct = new Product("LSBR", "lightsaber", 100, promotion);
+		const basket = new Basket("1337");
+		const productAmountApplying2x1 = 200
+
+		basket.addProduct(aProduct)
+		basket.addProduct(aProduct)
+		basket.addProduct(aProduct)
+		basket.addProduct(aProduct)
+
+		expect(basket.amount).toBe(productAmountApplying2x1)
+	})
+
+	// Handle 2x1 incomplete orders
 });
