@@ -12,6 +12,10 @@ class Basket {
 		return 0
 	}
 
+	addProduct(product){
+		this.products.push(product)
+	}
+
 	serialize(){
 		return {
 			id: this.id,
