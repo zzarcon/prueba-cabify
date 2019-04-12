@@ -3,7 +3,6 @@ class Basket {
 		if(!id){
 			throw new Error('Cannot create a Basket without an ID')
 		}
-
 		this.id = id
 		this.products = products
 		this.amount = this._calculateAmount()

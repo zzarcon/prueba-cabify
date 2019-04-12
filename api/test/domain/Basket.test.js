@@ -6,7 +6,7 @@ describe("Basket", () => {
 	test('needs an ID to be created', () => {
 		const errorMessage = 'Cannot create a Basket without an ID'
 		expect(() => {
-			const aBasket = new Basket()
+			new Basket()
 		}).toThrowError(errorMessage)
 
 	})
