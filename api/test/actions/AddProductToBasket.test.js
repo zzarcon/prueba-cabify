@@ -25,9 +25,15 @@ describe("AddProductsToBasket", () => {
 		basket = await AddProductsToBasket.do(basket, aProduct)
 
 		const produdctInBasket = basket.products[0]
+		const expectedProductShape = {
+			code: 'LSBR',
+			description: 'cool ass lightsaber',
+			price: 100,
+			promotion: '2for1'
+		}
 
     expect(basket.products.length).toBe(1);
-    expect(produdctInBasket).toBe(aProductCode);
+    expect(produdctInBasket).toMatchObject(expectedProductShape);
 	});
 
 	test("It should add multiple products to the basket", async () => {
@@ -38,8 +44,6 @@ describe("AddProductsToBasket", () => {
 		const products = [aProduct, aProduct, aProduct]
 
 		basket = await AddProductsToBasket.do(basket, products)
-
-		const produdctInBasket = basket.products[0]
 
     expect(basket.products.length).toBe(3);
 	})

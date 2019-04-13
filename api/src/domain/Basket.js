@@ -31,7 +31,7 @@ class Basket {
 	serialize(){
 		return {
 			id: this.id,
-			products: this._serializeProducts(),
+			products: this.products,
 			amount: 0
 		}
 	}
@@ -52,11 +52,6 @@ class Basket {
 			totalAmount = totalAmount + productPrice
 		})
 		this.amount = totalAmount
-	}
-
-	_serializeProducts(){
-		const productCodesArray = this.products.map((product) => product.code)
-		return productCodesArray
 	}
 
 }
