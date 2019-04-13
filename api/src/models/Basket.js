@@ -10,6 +10,10 @@ const BasketSchema = Schema({
 		type: Array,
 		default: []
 	},
+	amount: {
+		type: Number,
+		default: 0
+	}
 })
 
 var Basket = model('Basket', BasketSchema)

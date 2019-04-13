@@ -32,7 +32,7 @@ class Basket {
 		return {
 			id: this.id,
 			products: this.products,
-			amount: 0
+			amount: this.amount
 		}
 	}
 
