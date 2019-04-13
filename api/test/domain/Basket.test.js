@@ -17,7 +17,8 @@ describe("Basket", () => {
     const products = aBasket.products;
 
     expect(products.length).toEqual(0);
-  });
+	});
+
   test("it can be serialized", () => {
     const id = "1337";
     const products = [];
@@ -30,7 +31,7 @@ describe("Basket", () => {
 
     const aBasket = new Basket(id, products);
     expect(aBasket.serialize()).toMatchObject(epectedObject);
-  });
+	});
 
   test("a product can be added", () => {
     const aProduct = new Product("LSBR", "lightsaber", 100);
