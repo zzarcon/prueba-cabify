@@ -32,7 +32,8 @@ class BasketService {
 		const basket = new Basket(id, products)
 		basket.addProducts(productsToAdd)
 
-		return basket
+		const updatedBasket = await Collection.update(basket)
+		return updatedBasket
 	}
 
 }

@@ -33,13 +33,10 @@ exports.deleteBasket = async (req, res) => {
 };
 
 exports.addProductsToBasket = async (req, res) => {
-  const { basketId } = req.params;
-  const { products } = req.body;
+	const { basketId } = req.params;
+	const products = req.body
 
-	await AddProductsToBasket.do(basketId)
-  res.json({
-    message: "Adding products to basket",
-    basketId,
-    products
-  });
+	const updatedBasket = await AddProductsToBasket.do(basketId, products)
+
+	res.json(updatedBasket)
 };

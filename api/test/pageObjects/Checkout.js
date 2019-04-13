@@ -36,8 +36,8 @@ class Checkout {
   }
 
   static async addProductsToBasket(basketId, products) {
-    const response = await request(app)
-      .post(`${checkoutRoute}/${basketId}`)
+			const response = await request(app)
+			.post(`${checkoutRoute}/${basketId}`)
 			.send(products);
 
 		const basket = response.body

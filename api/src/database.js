@@ -8,8 +8,13 @@ class Database {
 		mongoose.connection.on("error", err => {
 			console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 		});
-		mongoose.Promise = global.Promise;
+		this.setup()
 	};
+
+	static setup(){
+		mongoose.Promise = global.Promise;
+		mongoose.set('useFindAndModify', false); // Deprecated functionality
+	}
 
 	static disconnect(){
 		return mongoose.connection.close();

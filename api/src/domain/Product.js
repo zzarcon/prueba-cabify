@@ -9,6 +9,15 @@ class Product{
 		this.price = price
 		this.promotion = promotion
 	}
+
+	serialize(){
+		return {
+			code: this.code,
+			description: this.description,
+			price: this.price,
+			promotion: this.promotion
+		}
+	}
 }
 
 export default Product

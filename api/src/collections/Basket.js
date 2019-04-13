@@ -22,6 +22,14 @@ class BasketCollection {
     return Basket.deleteOne({ _id: basketId })
 	}
 
+	static update({id, ...basketContent}) {
+		return Basket.findOneAndUpdate(
+			{_id: id},
+			basketContent,
+			{new: true},
+			)
+	}
+
 }
 
 export default BasketCollection;

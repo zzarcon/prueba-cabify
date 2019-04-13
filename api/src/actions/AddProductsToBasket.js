@@ -1,4 +1,3 @@
-import {RetrieveBasket} from './'
 import Basket from "../services/Basket";
 
 class AddProductsToBasket {
