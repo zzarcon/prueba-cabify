@@ -14,7 +14,7 @@ class BasketService {
   }
 
   static async retrieve(basketId) {
-    const basket = await Collection.retrieveOne(basketId);
+		const basket = await Collection.retrieveOne(basketId);
     const { id, products } = basket;
 
     return new Basket(id, products).serialize();
@@ -26,6 +26,12 @@ class BasketService {
 		return baskets.map(basket => {
       return new Basket(basket.id, basket.products).serialize();
     });
+	}
+
+	static async addProducts(basket, products){
+		basket.addProducts(products)
+
+		return basket.serialize()
 	}
 
 }

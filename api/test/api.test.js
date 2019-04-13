@@ -1,6 +1,6 @@
 import "@babel/polyfill";
-import database from "../../src/database";
-import Checkout from "../pageObjects/Checkout";
+import database from "../src/database";
+import Checkout from "./pageObjects/Checkout";
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
 describe("/checkout/", () => {
@@ -41,6 +41,7 @@ describe("/checkout/", () => {
 		expect(isBasketInList).toBe(false)
 	})
 
+	//TODO: Fails non deterministic (check drop of database)
 	test('get a specific basket by id', async () => {
 		const newBasket = await Checkout.createBasket();
 

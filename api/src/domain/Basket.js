@@ -14,6 +14,28 @@ class Basket {
 		this._calculateAmount()
 	}
 
+	// TODO: Makes sense to use two methods for single an multiple params?
+	addProduct(product){
+		this.products.push(product)
+		this._calculateAmount()
+	}
+
+	addProducts(products){
+		const itsOnlyOneProduct = !products.length
+		if(itsOnlyOneProduct){
+			products = [products]
+		}
+		products.forEach((product) => { this.addProduct(product)})
+	}
+
+	serialize(){
+		return {
+			id: this.id,
+			products: this._serializeProducts(),
+			amount: 0
+		}
+	}
+
 	_calculateAmount(){
 		let totalAmount = 0
 		let twoForOneCounter = 0
@@ -32,18 +54,11 @@ class Basket {
 		this.amount = totalAmount
 	}
 
-	addProduct(product){
-		this.products.push(product)
-		this._calculateAmount()
+	_serializeProducts(){
+		const productCodesArray = this.products.map((product) => product.code)
+		return productCodesArray
 	}
 
-	serialize(){
-		return {
-			id: this.id,
-			products: this.products,
-			amount: 0
-		}
-	}
 }
 
 export default Basket
