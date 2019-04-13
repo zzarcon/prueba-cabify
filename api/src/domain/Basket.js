@@ -4,12 +4,12 @@ const PROMO_CODES = {
 }
 
 class Basket {
-	constructor(id){
+	constructor(id, products = []){
 		if(!id){
 			throw new Error('Cannot create a Basket without an ID')
 		}
 		this.id = id
-		this.products = []
+		this.products = products
 		this.amount = 0
 		this._calculateAmount()
 	}

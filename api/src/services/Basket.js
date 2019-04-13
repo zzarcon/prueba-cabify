@@ -12,7 +12,7 @@ class BasketService {
 	static async remove(basketId) {
     return await Collection.remove(basketId);
   }
-
+	// TODOL A los servicios le entra una basket o un basketId?
   static async retrieve(basketId) {
 		const basket = await Collection.retrieveOne(basketId);
     const { id, products } = basket;
@@ -28,10 +28,11 @@ class BasketService {
     });
 	}
 
-	static async addProducts(basket, products){
-		basket.addProducts(products)
+	static async addProducts({id, products}, productsToAdd){
+		const basket = new Basket(id, products)
+		basket.addProducts(productsToAdd)
 
-		return basket.serialize()
+		return basket
 	}
 
 }

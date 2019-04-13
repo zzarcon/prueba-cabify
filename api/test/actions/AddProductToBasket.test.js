@@ -22,9 +22,9 @@ describe("AddProductsToBasket", () => {
 		const aProductCode = 'LSBR'
 		const aProduct = new Product(aProductCode, 'cool ass lightsaber', 100, '2for1')
 
-		basket = await AddProductsToBasket.do(basket, aProduct)
+		const basketWithProducts = await AddProductsToBasket.do(basket.id, aProduct)
 
-		const produdctInBasket = basket.products[0]
+		const produdctInBasket = basketWithProducts.products[0]
 		const expectedProductShape = {
 			code: 'LSBR',
 			description: 'cool ass lightsaber',
@@ -32,7 +32,7 @@ describe("AddProductsToBasket", () => {
 			promotion: '2for1'
 		}
 
-    expect(basket.products.length).toBe(1);
+    expect(basketWithProducts.products.length).toBe(1);
     expect(produdctInBasket).toMatchObject(expectedProductShape);
 	});
 
@@ -43,8 +43,8 @@ describe("AddProductsToBasket", () => {
 		const aProduct = new Product(aProductCode, 'cool ass lightsaber', 100, '2for1')
 		const products = [aProduct, aProduct, aProduct]
 
-		basket = await AddProductsToBasket.do(basket, products)
+		const basketWithProducts = await AddProductsToBasket.do(basket.id, products)
 
-    expect(basket.products.length).toBe(3);
+    expect(basketWithProducts.products.length).toBe(3);
 	})
 });

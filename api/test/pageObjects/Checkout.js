@@ -5,15 +5,15 @@ const checkoutRoute = "/api/checkout/";
 
 class Checkout {
   static async createBasket() {
-		const response = await request(app).post(checkoutRoute)
-		const basket = response.body
+    const response = await request(app).post(checkoutRoute);
+    const basket = response.body;
 
     return basket;
   }
 
   static async retrieveBaskets() {
-		const response = await request(app).get(checkoutRoute)
-		const {baskets} = response.body
+    const response = await request(app).get(checkoutRoute);
+    const { baskets } = response.body;
 
     return baskets;
   }
@@ -21,19 +21,29 @@ class Checkout {
   static async isBasketInList(basketId) {
     const baskets = await this.retrieveBaskets();
 
-		return !!baskets.find(basket => basket.id === basketId);
-	}
+    return !!baskets.find(basket => basket.id === basketId);
+  }
 
-	static async removeBasket(basketId){
-		return await request(app).delete(`${checkoutRoute}/${basketId}`)
-	}
+  static async removeBasket(basketId) {
+    return await request(app).delete(`${checkoutRoute}/${basketId}`);
+  }
 
-	static async getBasket(basketId){
-		const response = await request(app).get(`${checkoutRoute}/${basketId}`)
+  static async getBasket(basketId) {
+    const response = await request(app).get(`${checkoutRoute}/${basketId}`);
+    const basket = response.body;
+
+    return basket;
+  }
+
+  static async addProductsToBasket(basketId, products) {
+    const response = await request(app)
+      .post(`${checkoutRoute}/${basketId}`)
+			.send(products);
+
 		const basket = response.body
 
 		return basket
-	}
+  }
 }
 
 export default Checkout;

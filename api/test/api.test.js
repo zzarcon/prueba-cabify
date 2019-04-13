@@ -1,6 +1,7 @@
 import "@babel/polyfill";
 import database from "../src/database";
 import Checkout from "./pageObjects/Checkout";
+import Product from '../src/domain/Product';
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
 describe("/checkout/", () => {
@@ -48,5 +49,16 @@ describe("/checkout/", () => {
 		const basket = await Checkout.getBasket(newBasket.id)
 
 		expect(basket.id).toEqual(newBasket.id)
+	})
+
+	xtest('add products to a basket', async () => {
+		const newBasket = await Checkout.createBasket();
+		const basketId = newBasket.id
+		const aProduct = new Product('LSBR', 'lightsaber', 100)
+		const products = [aProduct, aProduct, aProduct]
+
+		const basketWithProducts = await Checkout.addProductsToBasket(basketId, products)
+		console.log({basketWithProducts})
+		expect(basketWithProducts.products.length).toBe(3)
 	})
 });
