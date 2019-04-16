@@ -1,4 +1,4 @@
-## 🚗 Prueba cabify
+## Prueba cabify
 
 🚗 My go at [Cabify Backend Challenge](https://github.com/cabify/backend-challenge), trying to use a Service Oriented Architecture.
 
