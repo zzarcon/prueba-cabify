@@ -54,14 +54,15 @@ describe("/checkout/", () => {
 	test('add products to a basket', async () => {
 		const basket = await Checkout.createBasket();
 		const basketId = basket.id
-		const aProduct = new Product('LSBR', 'lightsaber', 100).serialize()
-		const products = [aProduct, aProduct, aProduct]
-
+		const aProduct = 'MUG'
+		const a2x1Product = 'VOUCHER'
+		const products = [aProduct, aProduct, aProduct, a2x1Product, a2x1Product, a2x1Product]
+		console.log(basketId)
 		await Checkout.addProductsToBasket(basketId, products)
 
 		const basketWithProducts = await Checkout.getBasket(basketId)
 
-		expect(basketWithProducts.products.length).toBe(3)
-		expect(basketWithProducts.amount).toBe(300)
+		expect(basketWithProducts.products.length).toBe(6)
+		expect(basketWithProducts.amount).toBe(32.5)
 	})
 });

@@ -34,7 +34,7 @@ class Checkout {
 
     return basket;
   }
-
+// TODO: Siempre enviar la petición de la misma manera. Un array directamente o un objeto?
   static async addProductsToBasket(basketId, products) {
 			const response = await request(app)
 			.post(`${checkoutRoute}/${basketId}`)
@@ -43,7 +43,17 @@ class Checkout {
 		const basket = response.body
 
 		return basket
-  }
+	}
+
+	static async addProductToBasket(basketId, product) {
+		const response = await request(app)
+		.post(`${checkoutRoute}/${basketId}`)
+		.send([product]);
+
+	const basket = response.body
+
+	return basket
+}
 }
 
 export default Checkout;

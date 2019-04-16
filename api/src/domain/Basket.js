@@ -20,10 +20,6 @@ class Basket {
   }
 
   addProducts(products) {
-    const itsOnlyOneProduct = !products.length;
-    if (itsOnlyOneProduct) {
-      products = [products];
-    }
     products.forEach(product => {
       this.addProduct(product);
     });

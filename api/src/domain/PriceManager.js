@@ -1,4 +1,6 @@
-const PROMO_CODES = {
+
+// TODO: Not sure if this should go here
+export const PROMO_CODES = {
   twoForOne: "2X1",
   bulk: "BULK"
 };
@@ -9,7 +11,6 @@ class PriceManager{
 
 		const productMap = this._generateProductMap(products)
 		const productCodes = Object.keys(productMap)
-
 		productCodes.forEach((code) => {
 			const product = productMap[code]
 			const {price, quantity} = product
@@ -20,13 +21,31 @@ class PriceManager{
 			}
 
 			if(product.promotion === PROMO_CODES['bulk']){
-				totalAmount = this._calculateBulk(quantity, price)
+				totalAmount += this._calculateBulk(quantity, price)
 				return
 			}
-
 			totalAmount += this._calculateRegular(product.price, product.quantity)
 		})
 		return totalAmount
+	}
+
+	static _generateProductMap(products){
+		const productMap = {}
+
+		for (let i = 0; i < products.length; i++) {
+			const product = products[i]
+
+			const productKey = productMap[product.code]
+			const quantity = productKey && productKey.quantity
+
+			productMap[product.code] = {
+				price: product.price,
+				promotion: product.promotion,
+				quantity: quantity + 1 || 1,
+			}
+
+		}
+		return productMap
 	}
 
 	static _calculateRegular(quantity, price){
@@ -47,25 +66,6 @@ class PriceManager{
 		}
 		const amount = quantity * productPrice
 		return amount
-	}
-
-	static _generateProductMap(productSpecs){
-		const productMap = {}
-
-    for (let i = 0; i < productSpecs.length; i++) {
-			const specification = productSpecs[i]
-
-			const product = productMap[specification.code]
-			const quantity = product && product.quantity
-
-			productMap[specification.code] = {
-				price: specification.price,
-				promotion: specification.promotion,
-				quantity: quantity + 1 || 1,
-			}
-
-		}
-		return productMap
 	}
 
 }
