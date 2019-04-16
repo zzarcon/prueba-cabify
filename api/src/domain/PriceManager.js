@@ -5,11 +5,13 @@ const PROMO_CODES = {
 
 class PriceManager{
 	static calculateTotal(products){
-		const productCodes = Object.keys(products)
+		const productMap = this._generateProductMap(products)
+		const productCodes = Object.keys(productMap)
 		let currentPrice = 0
 		productCodes.forEach((code) => {
-			const product = products[code]
+			const product = productMap[code]
 			const {price, quantity} = product
+
 			if(product.promotion === PROMO_CODES['twoForOne']){
 				currentPrice += this._calculate2x1(quantity, price)
 				return
@@ -33,6 +35,24 @@ class PriceManager{
 	static _calculateBulk(quantity, price){
 
 	}
+
+	static _generateProductMap(products){
+		const productMap = {}
+
+    for (let i = 0; i < products.length; i++) {
+			const currentProduct = products[i]
+			const productKey = productMap[currentProduct.code]
+			const currentQuantity = productKey && productKey.quantity
+			productMap[currentProduct.code] = {
+				price: currentProduct.price,
+				promotion: currentProduct.promotion,
+				quantity: currentQuantity + 1 || 1,
+			}
+
+		}
+		return productMap
+	}
+
 }
 
 export default PriceManager

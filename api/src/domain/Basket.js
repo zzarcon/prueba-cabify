@@ -37,28 +37,8 @@ class Basket {
     };
 	}
 
-	_generateProductMap(){
-		const productMap = {}
-
-    for (let i = 0; i < this.products.length; i++) {
-			const currentProduct = this.products[i]
-
-			const productKey = productMap[currentProduct.code]
-			const currentQuantity = productKey && productKey.quantity
-
-			productMap[currentProduct.code] = {
-				price: currentProduct.price,
-				promotion: currentProduct.promotion,
-				quantity: currentQuantity + 1 || 1,
-			}
-
-		}
-		return productMap
-	}
-
   _calculateAmount() {
-		const productMap = this._generateProductMap()
-    this.amount = PriceManager.calculateTotal(productMap);
+    this.amount = PriceManager.calculateTotal(this.products);
   }
 }
 
