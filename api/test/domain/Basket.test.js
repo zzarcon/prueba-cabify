@@ -82,10 +82,9 @@ describe("Basket", () => {
 		basket.addProduct(aProduct)
 		basket.addProduct(aProduct)
 		basket.addProduct(aProduct)
-		basket.addProduct(aProduct)
 
 		expect(basket.amount).toBe(productAmountApplying2x1)
 	})
 
-	// Handle 2x1 incomplete orders
+
 });
