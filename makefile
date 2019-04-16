@@ -7,12 +7,6 @@ dev:
 down:
 	docker-compose down
 
-test-e2e:
-	docker-compose run -e API_URL=http://api:4000/api --rm e2e npm run test
-
-test-web:
-	docker-compose exec web npm run test
-
 test-api:
 	docker-compose run -e DATABASE_URI=mongodb://database:27017/cabify-test-db api npm run test
 
@@ -24,6 +18,3 @@ update-project:
 
 release-api:
 	cd api && make release
-
-release-web:
-	cd web && make release

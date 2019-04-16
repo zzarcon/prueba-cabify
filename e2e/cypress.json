@@ -1,7 +1,0 @@
-{
-  "baseUrl": "http://web:3000",
-  "video": false,
-  "testFiles": "**.test.js",
-  "integrationFolder": "./test",
-  "port": 3002
-}

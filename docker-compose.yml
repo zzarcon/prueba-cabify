@@ -13,28 +13,6 @@ services:
     depends_on:
       - database
     command: ["npm", "run", "dev"]
-  web:
-    build: ./web
-    environment:
-      - PORT=3000
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./web:/web
-      - /web/node_modules
-    command: ["npm", "run", "dev"]
-    environment:
-      - API_URL=http://localhost:4000/api
-    depends_on:
-      - api
-  e2e:
-    build: ./e2e
-    volumes:
-      - ./e2e:/e2e
-      - /e2e/node_modules
-    depends_on:
-      - api
-      - web
   database:
     image: "mongo:latest"
     ports:

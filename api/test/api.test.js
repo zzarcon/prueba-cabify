@@ -57,7 +57,6 @@ describe("/checkout/", () => {
 		const aProduct = 'MUG'
 		const a2x1Product = 'VOUCHER'
 		const products = [aProduct, aProduct, aProduct, a2x1Product, a2x1Product, a2x1Product]
-		console.log(basketId)
 		await Checkout.addProductsToBasket(basketId, products)
 
 		const basketWithProducts = await Checkout.getBasket(basketId)
