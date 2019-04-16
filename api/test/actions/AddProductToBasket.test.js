@@ -40,11 +40,11 @@ describe("AddProductsToBasket", () => {
 		let basket = await CreateBasket.do();
 
 		const aProductCode = 'LSBR'
-		const aProduct = new Product(aProductCode, 'cool ass lightsaber', 100, '2for1')
+		const aProduct = new Product(aProductCode, 'cool ass lightsaber', 100)
 		const products = [aProduct, aProduct, aProduct]
 
 		const basketWithProducts = await AddProductsToBasket.do(basket.id, products)
-
     expect(basketWithProducts.products.length).toBe(3);
+    expect(basketWithProducts.amount).toBe(300);
 	})
 });

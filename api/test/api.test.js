@@ -57,10 +57,11 @@ describe("/checkout/", () => {
 		const aProduct = new Product('LSBR', 'lightsaber', 100).serialize()
 		const products = [aProduct, aProduct, aProduct]
 
-		await Checkout.addProductsToBasket(basketId, aProduct)
+		await Checkout.addProductsToBasket(basketId, products)
 
 		const basketWithProducts = await Checkout.getBasket(basketId)
 
-		expect(basketWithProducts.products.length).toBe(1)
+		expect(basketWithProducts.products.length).toBe(3)
+		expect(basketWithProducts.amount).toBe(300)
 	})
 });
