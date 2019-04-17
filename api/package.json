@@ -5,7 +5,7 @@
     "start": "node dist/server.js",
     "dev": "nodemon --watch src --exec babel-node -- src/server",
     "build": "babel src -d dist",
-    "test": "jest test",
+    "test": "jest test --coverage",
     "test:watch": "jest test --watch"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@babel/core": "^7.4.0",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.2",
+    "eslint": "^5.16.0",
     "jest": "^24.1.0",
     "nodemon": "^1.18.10",
     "supertest": "^4.0.2"

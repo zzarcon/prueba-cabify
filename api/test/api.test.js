@@ -1,9 +1,9 @@
 import "@babel/polyfill";
 import database from "../src/database";
 import Checkout from "./pageObjects/Checkout";
-import Product from '../src/domain/Product';
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
+// TODO: Coverage of nearly 100%, how is it possible?
 describe("/checkout/", () => {
   beforeAll(() => {
     database.connect();
@@ -52,6 +52,7 @@ describe("/checkout/", () => {
 	})
 
 	test('add products to a basket', async () => {
+		// FIXME: This will fail if exam.test.js is run to. Concurrency problem?
 		const basket = await Checkout.createBasket();
 		const basketId = basket.id
 		const aProduct = 'MUG'

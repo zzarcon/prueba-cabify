@@ -3,7 +3,7 @@ import database from "../src/database";
 import Checkout from "./pageObjects/Checkout";
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
-xdescribe("Tests from the README", () => {
+describe("Tests from the README", () => {
   beforeAll(() => {
     database.connect();
   });
