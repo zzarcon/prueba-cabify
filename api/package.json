@@ -1,15 +1,15 @@
 {
-	"name": "prueba-cabify",
-	"version": "1.0.0",
-	"repository": {
-		"url": "https://github.com/vilvadot/prueba-cabify",
-		"type": "git"
-	},
-	"license": "WTFPL",
-	"author": {
-		"name": "vilvadot",
-		"email": "hi@vilva.io"
-	},
+  "name": "prueba-cabify",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/vilvadot/prueba-cabify",
+    "type": "git"
+  },
+  "license": "WTFPL",
+  "author": {
+    "name": "vilvadot",
+    "email": "hi@vilva.io"
+  },
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon --watch src --exec babel-node -- src/server",
