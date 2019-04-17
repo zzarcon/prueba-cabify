@@ -65,4 +65,6 @@ describe("/checkout/", () => {
 		expect(basketWithProducts.products.length).toBe(6)
 		expect(basketWithProducts.amount).toBe(32.5)
 	})
+
+	// TODO: Test error cases
 });
