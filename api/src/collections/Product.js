@@ -17,7 +17,7 @@ const PRODUCTS = {
 		price: 20,
 		promotion: {
 			code: PROMO_CODES.bulk,
-			minOrder: 3,
+			minimumOrder: 3,
 			discount: 1,
 		},
 		description: 'Cabify T-Shirt'

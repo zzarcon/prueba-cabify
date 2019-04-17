@@ -21,7 +21,7 @@ class PriceManager{
 			}
 
 			if(promotion && promotion.code === PROMO_CODES['bulk']){
-				totalAmount += this._calculateBulk(quantity, price)
+				totalAmount += this._calculateBulk(quantity, price, promotion)
 				return
 			}
 			totalAmount += this._calculateRegular(product.price, product.quantity)
@@ -57,7 +57,7 @@ class PriceManager{
 		return amount
 	}
 
-	static _calculateBulk(quantity, price, minimumOrder = 3, discount = 1){
+	static _calculateBulk(quantity, price, {minimumOrder = 3, discount = 1}){
 		let productPrice = price
 		// Setting static discount since its not stablished
 		if(quantity >= minimumOrder){
