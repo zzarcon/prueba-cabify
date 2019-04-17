@@ -1,62 +1,66 @@
 import PriceManager from "../../src/domain/PriceManager";
-import Product from "../../src/domain/Product";
+import Product from "../../src/services/Product";
 import "@babel/polyfill";
 
 describe("PriceManager", () => {
 	test('handles simple products price', () => {
-		const aProduct = new Product('LSBR', 'cool ass lightsaber', 100)
-		const anotherProduct = new Product('DRD', 'a friendly looking droid', 200)
+		const aProduct = Product.retrieve('MUG')
 
-		const products = [
-			...Array(10).fill(aProduct),
-			...Array(5).fill(anotherProduct),
-		]
+		const products = Array(10).fill(aProduct)
 
 		const totalAmount = PriceManager.calculateTotal(products)
-		const expectedAmount = 2000
+		const expectedAmount = 75
 
 		expect(totalAmount).toBe(expectedAmount)
 	})
 
 	test('handles 2x1 promotion', () => {
-		const a2x1Product = new Product('LSBR', 'cool ass lightsaber', 100, '2X1')
-		const another2x1Product = new Product('DRD', 'a friendly looking droid', 200, '2X1')
+		const a2x1Product = Product.retrieve('VOUCHER')
 
-		const products = [
-			...Array(10).fill(a2x1Product),
-			...Array(11).fill(another2x1Product),
-		]
+		const products = Array(11).fill(a2x1Product)
 
 		const totalAmount = PriceManager.calculateTotal(products)
-		const expectedAmount = 1700
+		const expectedAmount = 30
 
 		expect(totalAmount).toBe(expectedAmount)
 	})
 
-	test('handles bulk promotion', () => {
-		const aBulkProduct = new Product('LSBR', 'cool ass lightsaber', 100, 'BULK')
+	// TODO: Minimum order is opaque to test
+	test('handles bulk promotion when minimum order not reached', () => {
+		const aBulkProduct = Product.retrieve('TSHIRT')
+
+		const products = Array(2).fill(aBulkProduct)
+
+		const totalAmount = PriceManager.calculateTotal(products)
+		const expectedAmount = 40
+
+		expect(totalAmount).toBe(expectedAmount)
+	})
+
+	test('handles bulk promotion when minimum order reached', () => {
+		const aBulkProduct = Product.retrieve('TSHIRT')
 
 		const products = Array(10).fill(aBulkProduct)
 
 		const totalAmount = PriceManager.calculateTotal(products)
-		const expectedAmount = 990
+		const expectedAmount = 190
 
 		expect(totalAmount).toBe(expectedAmount)
 	})
 
 	test('handles mixed orders', () => {
-		const aBulkProduct = new Product('LSBR', 'cool ass lightsaber', 100, 'BULK')
-		const a2x1Product = new Product('DRD', 'a friendly looking droid', 200, '2X1')
-		const aRegularProduct = new Product('SHIP', 'shiny, shiny', 12000)
+		const aBulkProduct = Product.retrieve('TSHIRT')
+		const a2x1Product = Product.retrieve('VOUCHER')
+		const aRegularProduct = Product.retrieve('MUG')
 
 		const products = [
-			...Array(15).fill(aBulkProduct),
+			...Array(10).fill(aBulkProduct),
 			...Array(11).fill(a2x1Product),
 			aRegularProduct,
 		]
 
 		const totalAmount = PriceManager.calculateTotal(products)
-		const expectedAmount = 14685
+		const expectedAmount = 227.5
 
 		expect(totalAmount).toBe(expectedAmount)
 

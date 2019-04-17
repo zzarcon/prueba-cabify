@@ -8,10 +8,10 @@ down:
 	docker-compose down
 
 test-api:
-	docker-compose run -e DATABASE_URI=mongodb://database:27017/cabify-test-db api npm run test
+	docker-compose run --rm -e DATABASE_URI=mongodb://database:27017/cabify-test-db api npm run test
 
 test-watch-api:
-	docker-compose run -e DATABASE_URI=mongodb://database:27017/cabify-test-db api npm run test:watch
+	docker-compose run --rm -e DATABASE_URI=mongodb://database:27017/cabify-test-db api npm run test:watch
 
 update-project:
 	git submodule update --recursive --remote

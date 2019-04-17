@@ -1,7 +1,7 @@
 import "@babel/polyfill";
 import database from "../../src/database";
 import { AddProductsToBasket, CreateBasket } from "../../src/actions";
-import Product from "../../src/domain/Product";
+import ProductService from '../../src/services/Product'
 
 // TODO: Mas tests para actions?
 describe("AddProductsToBasket", () => {
@@ -28,7 +28,9 @@ describe("AddProductsToBasket", () => {
 			code: 'VOUCHER',
 			description: 'Cabify Voucher',
 			price: 5,
-			promotion: '2X1'
+			promotion: {
+				code: '2X1'
+			}
 		}
 
     expect(basketWithProducts.products.length).toBe(1);
@@ -38,8 +40,8 @@ describe("AddProductsToBasket", () => {
 	xtest("It should add multiple products to the basket", async () => {
 		let basket = await CreateBasket.do();
 
-		const aProductCode = 'LSBR'
-		const aProduct = new Product(aProductCode, 'cool ass lightsaber', 100)
+		// TODO: Should use Service or domain for this?
+		const aProduct = ProductService.retrieve('LSBR')
 		const products = [aProduct, aProduct, aProduct]
 
 		const basketWithProducts = await AddProductsToBasket.do(basket.id, products)

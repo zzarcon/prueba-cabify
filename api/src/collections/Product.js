@@ -4,7 +4,9 @@ import {PROMO_CODES} from '../domain/PriceManager'
 const PRODUCTS = {
 	VOUCHER: {
 		price: 5,
-		promotion: PROMO_CODES.twoForOne,
+		promotion: {
+			code: PROMO_CODES.twoForOne,
+		},
 		description: 'Cabify Voucher'
 	},
 	MUG: {
@@ -13,17 +15,21 @@ const PRODUCTS = {
 	},
 	TSHIRT: {
 		price: 20,
-		promotion: PROMO_CODES.bulk,
+		promotion: {
+			code: PROMO_CODES.bulk,
+			minOrder: 3,
+			discount: 1,
+		},
 		description: 'Cabify T-Shirt'
 	}
 }
 
 class ProductCollection {
-
 	static retrieveOne(productID){
 		const product = PRODUCTS[productID]
 		if(!product){
-			throw new Error('No product in database')
+			// TODO: Where is this tested??
+			throw new Error('Invalid product code')
 		}
 		return new Product(productID, product.description, product.price, product.promotion)
 	}

@@ -1,5 +1,5 @@
 import Basket from "../../src/domain/Basket";
-import Product from "../../src/domain/Product";
+import Product from "../../src/services/Product";
 import "@babel/polyfill";
 
 describe("Basket", () => {
@@ -34,7 +34,7 @@ describe("Basket", () => {
 	});
 
   test("a product can be added", () => {
-    const aProduct = new Product("LSBR", "lightsaber", 100);
+    const aProduct = Product.retrieve("VOUCHER");
     const basket = new Basket("1337");
 
     basket.addProduct(aProduct);
@@ -42,11 +42,11 @@ describe("Basket", () => {
     const productInBasket = basket.products[0];
 
     expect(aProduct).toEqual(productInBasket);
-  });
+	});
 
   test("products are added to the top of the basket", () => {
-		const aProduct = new Product("LSBR", "lightsaber", 100);
-		const anotherProduct = new Product("DRD", "droid", 250);
+		const aProduct = Product.retrieve("VOUCHER");
+		const anotherProduct = Product.retrieve("MUG");
     const basket = new Basket("1337");
 
     basket.addProduct(aProduct);
