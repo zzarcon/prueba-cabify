@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import database from '../../src/database'
+import database from '../../src/infrastructure/Database'
 import {CreateBasket, RemoveBasket, RetrieveBaskets } from "../../src/actions";
 
 describe("RemoveBasket", () => {
@@ -8,10 +8,7 @@ describe("RemoveBasket", () => {
   });
 
   afterAll(() => {
-		// TODO: La db me viene contaminada de otros tests
-		database.drop().then(() => {
-			database.disconnect()
-		})
+		database.disconnect()
   });
 
   test("It should delete a basket", async () => {

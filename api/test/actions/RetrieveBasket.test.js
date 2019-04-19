@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import database from '../../src/database'
+import database from '../../src/infrastructure/Database'
 import {RetrieveBasket, CreateBasket} from "../../src/actions";
 
 describe("RetrieveBasket", () => {
@@ -8,9 +8,7 @@ describe("RetrieveBasket", () => {
   });
 
   afterAll(() => {
-		database.drop().then(() => {
-			database.disconnect()
-		})
+		database.disconnect()
   });
 
   test("It should get a basket", async () => {

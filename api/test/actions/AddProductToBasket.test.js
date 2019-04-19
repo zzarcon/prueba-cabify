@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import database from "../../src/database";
+import database from "../../src/infrastructure/Database";
 import { AddProductsToBasket, CreateBasket } from "../../src/actions";
 import ProductService from '../../src/services/Product'
 
@@ -10,16 +10,13 @@ describe("AddProductsToBasket", () => {
   });
 
   afterAll(() => {
-    // TODO: La db me viene contaminada de otros tests
-    database.drop().then(() => {
-      database.disconnect();
-    });
+    database.disconnect();
   });
 
   test("It should add a single product to the basket", async () => {
 		let basket = await CreateBasket.do();
 
-		const aProduct = 'VOUCHER'
+		const aProduct = ['VOUCHER']
 
 		const basketWithProducts = await AddProductsToBasket.do(basket.id, aProduct)
 
@@ -41,7 +38,7 @@ describe("AddProductsToBasket", () => {
 		let basket = await CreateBasket.do();
 
 		// TODO: Should use Service or domain for this?
-		const aProduct = ProductService.retrieve('LSBR')
+		const aProduct = ProductService.retrieve('VOUCHER')
 		const products = [aProduct, aProduct, aProduct]
 
 		const basketWithProducts = await AddProductsToBasket.do(basket.id, products)

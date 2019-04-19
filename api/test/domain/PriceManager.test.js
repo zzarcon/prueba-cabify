@@ -28,22 +28,20 @@ describe("PriceManager", () => {
 	// TODO: Minimum order is opaque to test
 	test('handles bulk promotion when minimum order not reached', () => {
 		const aBulkProduct = Product.retrieve('TSHIRT')
-
+		const amountWithBulkDiscount = 40
 		const products = Array(2).fill(aBulkProduct)
 
 		const totalAmount = PriceManager.calculateTotal(products)
-		const expectedAmount = 40
 
-		expect(totalAmount).toBe(expectedAmount)
+		expect(totalAmount).toBe(amountWithBulkDiscount)
 	})
 
 	test('handles bulk promotion when minimum order reached', () => {
 		const aBulkProduct = Product.retrieve('TSHIRT')
-
+		const expectedAmount = 190
 		const products = Array(10).fill(aBulkProduct)
 
 		const totalAmount = PriceManager.calculateTotal(products)
-		const expectedAmount = 190
 
 		expect(totalAmount).toBe(expectedAmount)
 	})
@@ -52,15 +50,14 @@ describe("PriceManager", () => {
 		const aBulkProduct = Product.retrieve('TSHIRT')
 		const a2x1Product = Product.retrieve('VOUCHER')
 		const aRegularProduct = Product.retrieve('MUG')
+		const expectedAmount = 227.5
 
 		const products = [
 			...Array(10).fill(aBulkProduct),
 			...Array(11).fill(a2x1Product),
 			aRegularProduct,
 		]
-
 		const totalAmount = PriceManager.calculateTotal(products)
-		const expectedAmount = 227.5
 
 		expect(totalAmount).toBe(expectedAmount)
 

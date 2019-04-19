@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import database from "../../src/database";
+import database from "../../src/infrastructure/Database";
 import {RetrieveBaskets, CreateBasket} from "../../src/actions";
 
 //TODO: Mejorar estructura de tests, AAA?
@@ -9,9 +9,7 @@ describe("RetrieveBaskets", () => {
   });
 
   afterAll(() => {
-    database.drop().then(() => {
-      database.disconnect();
-    });
+    database.disconnect();
   });
 
   test("It should retrieve baskets", async () => {

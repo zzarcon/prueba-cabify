@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import database from "../src/database";
+import database from "../src/infrastructure/Database";
 import Checkout from "./pageObjects/Checkout";
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
@@ -9,13 +9,14 @@ describe("Tests from the README", () => {
   });
 
   afterAll(() => {
-    database.drop().then(() => {
-      database.disconnect();
-    });
+    // database.drop().then(() => {
+    //   database.disconnect();
+    // });
   });
 
-	xtest('VOUCHER, TSHIRT, MUG', async () => {
+	test('VOUCHER, TSHIRT, MUG', async () => {
 		const basket = await Checkout.createBasket();
+
 		const basketId = basket.id
 
 		const products = ['VOUCHER', 'TSHIRT', 'MUG']
@@ -28,7 +29,7 @@ describe("Tests from the README", () => {
 		expect(basketWithProducts.amount).toBe(32.5)
 	})
 
-	xtest('VOUCHER, TSHIRT, VOUCHER', async () => {
+	test('VOUCHER, TSHIRT, VOUCHER', async () => {
 		const basket = await Checkout.createBasket();
 		const basketId = basket.id
 

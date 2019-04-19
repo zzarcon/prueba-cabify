@@ -3,11 +3,6 @@ import Product from "../services/Product";
 
 class AddProductsToBasket {
   static async do(basketId, productCodes) {
-		const itsOnlyOneProduct = !Array.isArray(productCodes);
-
-    if (itsOnlyOneProduct) {
-      productCodes = [productCodes];
-		}
 		const products = productCodes.map(productId => {
 			return Product.retrieve(productId)
 		})

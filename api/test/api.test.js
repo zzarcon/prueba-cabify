@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import database from "../src/database";
+import database from "../src/infrastructure/Database";
 import Checkout from "./pageObjects/Checkout";
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
@@ -10,9 +10,7 @@ describe("/checkout/", () => {
   });
 
   afterAll(() => {
-    database.drop().then(() => {
-      database.disconnect();
-    });
+    database.disconnect();
   });
 
   test("baskets are created with a unique id", async () => {

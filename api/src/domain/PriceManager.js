@@ -10,6 +10,7 @@ class PriceManager{
 		let totalAmount = 0
 
 		const productMap = this._generateProductMap(products)
+
 		const productCodes = Object.keys(productMap)
 		productCodes.forEach((productCode) => {
 			const product = productMap[productCode]
@@ -32,8 +33,7 @@ class PriceManager{
 	static _generateProductMap(products){
 		const productMap = {}
 
-		for (let i = 0; i < products.length; i++) {
-			const product = products[i]
+		products.forEach((product) => {
 			const productKey = productMap[product.code]
 			const quantity = productKey && productKey.quantity
 
@@ -42,8 +42,7 @@ class PriceManager{
 				promotion: product.promotion,
 				quantity: quantity + 1 || 1,
 			}
-
-		}
+		})//TODO: Refactor a forEach
 		return productMap
 	}
 

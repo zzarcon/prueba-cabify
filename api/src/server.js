@@ -1,5 +1,5 @@
 import app from './app'
-import database from './database'
+import database from './infrastructure/Database'
 
 const {PORT} = process.env
 

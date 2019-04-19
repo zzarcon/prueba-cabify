@@ -1,10 +1,12 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const routes = require('./routes')
+import express from 'express'
+import bodyParser from 'body-parser'
+import routes from './routes'
+import Logger from './infrastructure/Logger'
 
 const app = express();
 
-// TODO: Config CORS correctly
+new Logger(app).initialize()
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

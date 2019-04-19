@@ -1,5 +1,5 @@
 import "@babel/polyfill";
-import database from "../../src/database";
+import database from "../../src/infrastructure/Database";
 import { CreateBasket } from "../../src/actions";
 
 // TODO: Mas tests para actions?
@@ -9,10 +9,7 @@ describe("CreateBasket", () => {
   });
 
   afterAll(() => {
-    // TODO: La db me viene contaminada de otros tests
-    database.drop().then(() => {
-      database.disconnect();
-    });
+    database.disconnect();
   });
 
   test("It should create a basket", async () => {

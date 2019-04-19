@@ -14,13 +14,14 @@
     "start": "node dist/server.js",
     "dev": "nodemon --watch src --exec babel-node -- src/server",
     "build": "babel src -d dist",
-    "test": "jest test --coverage",
-    "test:watch": "jest test --watch"
+    "test": "DEBUG=false jest test",
+    "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.3.16",
+    "morgan": "^1.9.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
