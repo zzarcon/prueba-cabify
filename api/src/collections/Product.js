@@ -29,7 +29,7 @@ class ProductCollection {
 		const product = PRODUCTS[productID]
 		if(!product){
 			// TODO: Where is this tested??
-			throw new Error('Invalid product code:', productID)
+			throw new Error(`Invalid product code: "${productID}"`)
 		}
 		return new Product(productID, product.description, product.price, product.promotion)
 	}
