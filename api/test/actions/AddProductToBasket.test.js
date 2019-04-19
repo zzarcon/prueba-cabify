@@ -34,15 +34,14 @@ describe("AddProductsToBasket", () => {
     expect(produdctInBasket).toMatchObject(expectedProductShape);
 	});
 
-	xtest("It should add multiple products to the basket", async () => {
+	test("It should add multiple products to the basket", async () => {
 		let basket = await CreateBasket.do();
 
-		// TODO: Should use Service or domain for this?
-		const aProduct = ProductService.retrieve('VOUCHER')
+		const aProduct = 'MUG'
 		const products = [aProduct, aProduct, aProduct]
 
 		const basketWithProducts = await AddProductsToBasket.do(basket.id, products)
     expect(basketWithProducts.products.length).toBe(3);
-    expect(basketWithProducts.amount).toBe(300);
+    expect(basketWithProducts.amount).toBe(22.5);
 	})
 });

@@ -9,12 +9,10 @@ describe("Tests from the README", () => {
   });
 
   afterAll(() => {
-    // database.drop().then(() => {
-    //   database.disconnect();
-    // });
+      database.disconnect();
   });
 
-	test('VOUCHER, TSHIRT, MUG', async () => {
+	test('VOUCHER, TSHIRT, MUG = 32.5', async () => {
 		const basket = await Checkout.createBasket();
 
 		const basketId = basket.id
@@ -29,7 +27,7 @@ describe("Tests from the README", () => {
 		expect(basketWithProducts.amount).toBe(32.5)
 	})
 
-	test('VOUCHER, TSHIRT, VOUCHER', async () => {
+	test('VOUCHER, TSHIRT, VOUCHER = 25', async () => {
 		const basket = await Checkout.createBasket();
 		const basketId = basket.id
 
@@ -43,7 +41,7 @@ describe("Tests from the README", () => {
 		expect(basketWithProducts.amount).toBe(25)
 	})
 
-	test('TSHIRT, TSHIRT, TSHIRT, VOUCHER, TSHIRT', async () => {
+	test('TSHIRT, TSHIRT, TSHIRT, VOUCHER, TSHIRT = 81', async () => {
 		const basket = await Checkout.createBasket();
 		const basketId = basket.id
 
@@ -59,7 +57,7 @@ describe("Tests from the README", () => {
 		expect(basketWithProducts.amount).toBe(81)
 	})
 
-	test('VOUCHER, TSHIRT, VOUCHER, VOUCHER, MUG, TSHIRT, TSHIRT', async () => {
+	test('VOUCHER, TSHIRT, VOUCHER, VOUCHER, MUG, TSHIRT, TSHIRT = 74.5', async () => {
 		const basket = await Checkout.createBasket();
 		const basketId = basket.id
 

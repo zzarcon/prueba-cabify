@@ -4,7 +4,7 @@ import Checkout from "./pageObjects/Checkout";
 
 // TODO: Since there are no db volumes, I assume db is empty on each execution?
 // TODO: Coverage of nearly 100%, how is it possible?
-describe("/checkout/", () => {
+describe("Api", () => {
   beforeAll(() => {
     database.connect();
   });
